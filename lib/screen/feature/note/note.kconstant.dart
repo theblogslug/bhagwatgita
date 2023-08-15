@@ -1,0 +1,1 @@
+enum PostType { create, edit }

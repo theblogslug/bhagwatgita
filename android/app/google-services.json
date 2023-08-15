@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "590641956943",
+    "firebase_url": "https://bhagwad-gita-fa166-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bhagwad-gita-fa166",
+    "storage_bucket": "bhagwad-gita-fa166.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590641956943:android:6fe8e549474c989a8ec23a",
+        "android_client_info": {
+          "package_name": "com.theblogslug.bhagwadgita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590641956943-acetaenuu59bi77r77nmlt6lqv3tc2rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_M93SXbBvJjUVZVmruwvb9UKAdNqHwDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590641956943-acetaenuu59bi77r77nmlt6lqv3tc2rk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "590641956943-6tb1fhmvgfgmef47sj2s2p8q324eoaud.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.theblogslug.bhagwadgita"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
