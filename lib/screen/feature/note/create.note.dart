@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CreateNoteScreen extends ConsumerStatefulWidget {
-  const CreateNoteScreen({super.key});
+  final String? initialTitle;
+  const CreateNoteScreen({super.key, this.initialTitle});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -30,7 +31,7 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
 
   handleSubmit() {
     if (titleController.text.isEmpty) {
-      titleController.text = "Untitled Text";
+      titleController.text = widget.initialTitle ?? "Untitled Text";
     }
     if (formKey.currentState!.validate()) {
       var res = {
@@ -55,37 +56,40 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
       child: Form(
         key: formKey,
         child: Scaffold(
-          appBar: AppBar(
-            title: TextFormField(
-              cursorColor: Theme.of(context).colorScheme.tertiary,
-              controller: titleController,
-              textInputAction: TextInputAction.newline,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              onChanged: (val) => handleSubmit(),
-              textCapitalization: TextCapitalization.sentences,
-              keyboardType: TextInputType.multiline,
-              style: Theme.of(context).textTheme.headline1?.copyWith(
-                    fontSize: 19,
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontWeight: FontWeight.w500,
-                  ),
-              decoration: InputDecoration(
-                fillColor: Colors.transparent,
-                filled: true,
-                hintText: 'Title', //.snakeCasetoSentenceCase(),
-                border: InputBorder.none,
+          appBar: widget.initialTitle == null
+              ? AppBar(
+                  title: TextFormField(
+                    cursorColor: Theme.of(context).colorScheme.tertiary,
+                    controller: titleController,
+                    textInputAction: TextInputAction.newline,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    onChanged: (val) => handleSubmit(),
+                    textCapitalization: TextCapitalization.sentences,
+                    keyboardType: TextInputType.multiline,
+                    style: Theme.of(context).textTheme.headline1?.copyWith(
+                          fontSize: 19,
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    decoration: InputDecoration(
+                      fillColor: Colors.transparent,
+                      filled: true,
+                      hintText: 'Title', //.snakeCasetoSentenceCase(),
+                      border: InputBorder.none,
 
-                hintStyle: Theme.of(context).textTheme.headline1?.copyWith(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .tertiary
-                          .withOpacity(0.5),
+                      hintStyle:
+                          Theme.of(context).textTheme.headline1?.copyWith(
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .tertiary
+                                    .withOpacity(0.5),
+                              ),
                     ),
-              ),
-            ),
-          ),
+                  ),
+                )
+              : null,
           body: Column(
             children: [
               Expanded(
@@ -109,7 +113,7 @@ class _CreateNoteScreenState extends ConsumerState<CreateNoteScreen> {
                     fillColor: Colors.transparent,
                     filled: true,
                     // hintText: 'Notes', //.snakeCasetoSentenceCase(),
-                    // border: InputBorder.none,
+                    border: InputBorder.none,
 
                     hintStyle: Theme.of(context).textTheme.headline1?.copyWith(
                           fontSize: 19,

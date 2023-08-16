@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditNoteScreen extends ConsumerStatefulWidget {
+  final bool isShowAppBar;
   final int index;
   final Map<String, dynamic> data;
-  const EditNoteScreen({super.key, required this.index, required this.data});
+  const EditNoteScreen({
+    super.key,
+    required this.index,
+    required this.data,
+    this.isShowAppBar = true,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _EditNoteScreenState();
@@ -41,42 +47,46 @@ class _EditNoteScreenState extends ConsumerState<EditNoteScreen> {
     return Form(
       key: formKey,
       child: Scaffold(
-        appBar: AppBar(
-          title: TextFormField(
-            // initialValue: widget.data['title'],
-            cursorColor: Theme.of(context).colorScheme.tertiary,
-            controller: titleController,
-            textInputAction: TextInputAction.newline,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            onChanged: (val) => handleSubmit(),
-            textCapitalization: TextCapitalization.sentences,
-            keyboardType: TextInputType.multiline,
-            style: Theme.of(context).textTheme.headline1?.copyWith(
-                  fontSize: 19,
-                  color: Theme.of(context).colorScheme.tertiary,
-                  fontWeight: FontWeight.w500,
-                ),
-            decoration: InputDecoration(
-              fillColor: Colors.transparent,
-              filled: true,
-              hintText: 'Title', //.snakeCasetoSentenceCase(),
-              border: InputBorder.none,
+        appBar: widget.isShowAppBar
+            ? AppBar(
+                title: TextFormField(
+                  // initialValue: widget.data['title'],
+                  cursorColor: Theme.of(context).colorScheme.tertiary,
+                  controller: titleController,
+                  textInputAction: TextInputAction.newline,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onChanged: (val) => handleSubmit(),
+                  textCapitalization: TextCapitalization.sentences,
+                  keyboardType: TextInputType.multiline,
+                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                        fontSize: 19,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                  decoration: InputDecoration(
+                    fillColor: Colors.transparent,
+                    filled: true,
+                    hintText: 'Title', //.snakeCasetoSentenceCase(),
+                    border: InputBorder.none,
 
-              hintStyle: Theme.of(context).textTheme.headline1?.copyWith(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w500,
-                    color:
-                        Theme.of(context).colorScheme.tertiary.withOpacity(0.5),
+                    hintStyle: Theme.of(context).textTheme.headline1?.copyWith(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .tertiary
+                              .withOpacity(0.5),
+                        ),
                   ),
-            ),
-            validator: (value) {
-              if (value == '') {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-          ),
-        ),
+                  validator: (value) {
+                    if (value == '') {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+              )
+            : null,
         body: Column(
           children: [
             Expanded(
@@ -100,7 +110,7 @@ class _EditNoteScreenState extends ConsumerState<EditNoteScreen> {
                   fillColor: Colors.transparent,
                   filled: true,
                   // hintText: 'Notes', //.snakeCasetoSentenceCase(),
-                  // border: InputBorder.none,
+                  border: !widget.isShowAppBar ? InputBorder.none : null,
 
                   hintStyle: Theme.of(context).textTheme.headline1?.copyWith(
                         fontSize: 19,

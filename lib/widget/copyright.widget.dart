@@ -19,6 +19,7 @@ class CopyrightWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
           border: Border(top: BorderSide(color: Colors.grey.shade300))),
       padding: const EdgeInsets.all(8.0),
       child: Row(

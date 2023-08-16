@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MainBookmark extends ConsumerStatefulWidget {
-  const MainBookmark({super.key});
+class PINToHome extends ConsumerStatefulWidget {
+  const PINToHome({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MainBookmarkState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _PINToHomeState();
 }
 
-class _MainBookmarkState extends ConsumerState<MainBookmark> {
+class _PINToHomeState extends ConsumerState<PINToHome> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +20,7 @@ class _MainBookmarkState extends ConsumerState<MainBookmark> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            "Bookmark",
+            "Pinned",
             style: GoogleFonts.sourceSansPro(
                 fontWeight: FontWeight.bold, fontSize: 22),
           ),
